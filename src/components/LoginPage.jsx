@@ -1,26 +1,37 @@
 import axios from "axios";
 import { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
+import { useNavigate } from "react-router";
+import {BASE_URL} from "../utils/constants.js";
 
 const LoginPage = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleLogin = async () => {
-    try{
+    try {
       const emailId = emailRef.current.value;
       const password = passwordRef.current.value;
       const response = await axios.post(
-        "https://4799d8a9-fea0-423a-819e-aa6ae6edd0e9-00-3f0wju7f2j896.sisko.replit.dev/login",
+        BASE_URL,
         {
           emailId,
           password,
         },
-        {withCredentials:true}
+        { withCredentials: true },
       );
       console.log(response.data);
-    }catch(e){
-      console.log("Error"+ e.message)
+      dispatch(addUser(response.data));
+      return navigate("/");
+    } catch (e) {
+      if (e.response && e.response.data && e.response.data.message) {
+        console.log("Error: " + e.response.data.message);
+      } else {
+        console.log("Error: " + e.message);
+      }
     }
-    
   };
   return (
     <div>
