@@ -15,7 +15,7 @@ const LoginPage = () => {
       const emailId = emailRef.current.value;
       const password = passwordRef.current.value;
       const response = await axios.post(
-        BASE_URL,
+        BASE_URL + "login",
         {
           emailId,
           password,

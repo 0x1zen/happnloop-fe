@@ -1,1 +1,1 @@
-export const BASE_URL = "https://4799d8a9-fea0-423a-819e-aa6ae6edd0e9-00-3f0wju7f2j896.sisko.replit.dev/login";
+export const BASE_URL = "https://4799d8a9-fea0-423a-819e-aa6ae6edd0e9-00-3f0wju7f2j896.sisko.replit.dev/";
